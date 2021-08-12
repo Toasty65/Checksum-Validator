@@ -40,7 +40,7 @@ namespace Checksum_Validator
             this.tb_checksum = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_confirm = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtb_output = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -60,7 +60,7 @@ namespace Checksum_Validator
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.richTextBox1);
+            this.panel1.Controls.Add(this.rtb_output);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
@@ -98,6 +98,7 @@ namespace Checksum_Validator
             this.btn_selectFile.TabIndex = 2;
             this.btn_selectFile.Text = "Select";
             this.btn_selectFile.UseVisualStyleBackColor = true;
+            this.btn_selectFile.Click += new System.EventHandler(this.btn_selectFile_Click);
             // 
             // groupBox1
             // 
@@ -154,15 +155,16 @@ namespace Checksum_Validator
             this.btn_confirm.TabIndex = 0;
             this.btn_confirm.Text = "Check!";
             this.btn_confirm.UseVisualStyleBackColor = true;
+            this.btn_confirm.Click += new System.EventHandler(this.btn_confirm_Click);
             // 
-            // richTextBox1
+            // rtb_output
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 241);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(374, 45);
-            this.richTextBox1.TabIndex = 6;
-            this.richTextBox1.Text = "";
+            this.rtb_output.Location = new System.Drawing.Point(12, 241);
+            this.rtb_output.Name = "rtb_output";
+            this.rtb_output.ReadOnly = true;
+            this.rtb_output.Size = new System.Drawing.Size(374, 45);
+            this.rtb_output.TabIndex = 6;
+            this.rtb_output.Text = "";
             // 
             // Form1
             // 
@@ -200,7 +202,7 @@ namespace Checksum_Validator
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btn_confirm;
         private System.Windows.Forms.TextBox tb_checksum;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtb_output;
     }
 }
 
