@@ -41,10 +41,13 @@ namespace Checksum_Validator
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_confirm = new System.Windows.Forms.Button();
             this.rtb_output = new System.Windows.Forms.RichTextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // header1
@@ -60,13 +63,14 @@ namespace Checksum_Validator
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.rtb_output);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Location = new System.Drawing.Point(0, 66);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(398, 298);
+            this.panel1.Size = new System.Drawing.Size(398, 365);
             this.panel1.TabIndex = 1;
             // 
             // label2
@@ -115,43 +119,43 @@ namespace Checksum_Validator
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.tb_checksum);
+            this.groupBox2.Controls.Add(this.tableLayoutPanel1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(0, 71);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(398, 100);
+            this.groupBox2.Size = new System.Drawing.Size(398, 85);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Step 2: Enter provided checksum";
+            this.groupBox2.Text = "Step 2: Choose algorithm";
             // 
             // tb_checksum
             // 
-            this.tb_checksum.Location = new System.Drawing.Point(12, 46);
+            this.tb_checksum.Location = new System.Drawing.Point(12, 26);
             this.tb_checksum.Name = "tb_checksum";
             this.tb_checksum.Size = new System.Drawing.Size(374, 23);
             this.tb_checksum.TabIndex = 0;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btn_confirm);
+            this.groupBox3.Controls.Add(this.tb_checksum);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(0, 171);
+            this.groupBox3.Location = new System.Drawing.Point(0, 156);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(398, 64);
+            this.groupBox3.Size = new System.Drawing.Size(398, 71);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Step 3: Compare!";
+            this.groupBox3.Text = "Step 3: Enter provided checksum";
             // 
             // btn_confirm
             // 
             this.btn_confirm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_confirm.Location = new System.Drawing.Point(79, 22);
+            this.btn_confirm.Location = new System.Drawing.Point(72, 25);
             this.btn_confirm.Name = "btn_confirm";
-            this.btn_confirm.Size = new System.Drawing.Size(240, 36);
+            this.btn_confirm.Size = new System.Drawing.Size(240, 29);
             this.btn_confirm.TabIndex = 0;
             this.btn_confirm.Text = "Check!";
             this.btn_confirm.UseVisualStyleBackColor = true;
@@ -159,33 +163,60 @@ namespace Checksum_Validator
             // 
             // rtb_output
             // 
-            this.rtb_output.Location = new System.Drawing.Point(12, 241);
+            this.rtb_output.Location = new System.Drawing.Point(12, 302);
             this.rtb_output.Name = "rtb_output";
             this.rtb_output.ReadOnly = true;
-            this.rtb_output.Size = new System.Drawing.Size(374, 45);
+            this.rtb_output.Size = new System.Drawing.Size(374, 51);
             this.rtb_output.TabIndex = 6;
             this.rtb_output.Text = "";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btn_confirm);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(0, 227);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(398, 69);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Step 4: Compare";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(392, 63);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 364);
+            this.ClientSize = new System.Drawing.Size(398, 431);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.header1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(414, 403);
-            this.MinimumSize = new System.Drawing.Size(414, 403);
+            this.MaximumSize = new System.Drawing.Size(414, 470);
+            this.MinimumSize = new System.Drawing.Size(414, 470);
             this.Name = "Form1";
             this.Text = "Checksum Validator";
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -203,6 +234,8 @@ namespace Checksum_Validator
         private System.Windows.Forms.Button btn_confirm;
         private System.Windows.Forms.TextBox tb_checksum;
         private System.Windows.Forms.RichTextBox rtb_output;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 
