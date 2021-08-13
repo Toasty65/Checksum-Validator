@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using System.Drawing;
 
 namespace Checksum_Validator
 {
@@ -25,7 +26,7 @@ namespace Checksum_Validator
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.Filter = "All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -49,20 +50,34 @@ namespace Checksum_Validator
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
+            // Check if all forms are filled
+            if (string.IsNullOrEmpty(tb_filePath.Text))
+            {
+                tb_filePath.BackColor = Color.Red;
+                timer1.Interval = 500;
+                timer1.Start();
+            }
+
             var filePath = tb_filePath.Text;
             var originalChecksum = tb_checksum.Text;
             var fileHash = "";
 
             // Generate file hash
-            using (var sha256 = SHA256.Create())
-            {
-                using (var stream = File.OpenRead(filePath))
-                {
-                    var hash = sha256.ComputeHash(stream);
-                    fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
-                    rtb_output.Text = fileHash;
-                }
-            }
+            //using (var sha256 = SHA256.Create())
+            //{
+            //    using (var stream = File.OpenRead(filePath))
+            //    {
+            //        var hash = sha256.ComputeHash(stream);
+            //        fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+            //        rtb_output.Text = fileHash;
+            //    }
+            //}
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            tb_filePath.BackColor = DefaultBackColor;
         }
     }
 }
