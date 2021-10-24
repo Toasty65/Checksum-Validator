@@ -26,7 +26,8 @@ namespace Checksum_Validator
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
+                // Setting up  the "openFileDialog"
+                openFileDialog.InitialDirectory = $"c:\\{Environment.UserName}\\Downloads";
                 openFileDialog.Filter = "All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
@@ -41,6 +42,11 @@ namespace Checksum_Validator
             tb_filePath.Text = filePath;
         }
 
+        /// <summary>
+        /// An event that gets triggered if the button gets clicked
+        /// </summary>
+        /// <param name="sender"> The sender </param>
+        /// <param name="e"> Event args </param>
         private void btn_confirm_Click(object sender, EventArgs e)
         {
             // Check if all forms are filled
@@ -50,16 +56,22 @@ namespace Checksum_Validator
             var originalChecksum = tb_checksum.Text;
             var algorithmTypes = new List<RadioButton>() { rb_md5, rb_sha1, rb_sha256, rb_sha512 };
 
+            // Check which radio button is checked to determine the algorithm
             var type = "";
             foreach (var algorithmType in algorithmTypes)
             {
                 if (algorithmType.Checked) type = algorithmType.Text.Replace(" ", "").ToLower();
             }
 
+            // Set the result text for the output box
             rtb_output.Text = CompareHashes(GenerateChecksum(filePath, type), originalChecksum) == true ? "Checksum's are equal!" :
             "Generated Checksum is not equal to the provided Checksum!\nCheck if your selected algorithm is the same as the provided. If it's still not equal, re-download the file and try again.";
         }
 
+        /// <summary>
+        /// Checks if all mandatory forms are filled
+        /// </summary>
+        /// <returns> true, if all forms are filled and false if not. </returns>
         private bool CheckForms()
         {
             var valid = true;
@@ -69,6 +81,8 @@ namespace Checksum_Validator
             {
                 valid = false;
                 rtb_output.Text += "Please select a file!\n";
+
+                // Highlight the form to be filled and start the timer to reset the effect after 500 milliseconds
                 tb_filePath.BackColor = Color.Red;
                 timer1.Interval = 500;
                 timer1.Start();
@@ -77,6 +91,8 @@ namespace Checksum_Validator
             {
                 valid = false;
                 rtb_output.Text += "Please enter the provided checksum!";
+
+                // Highlight the form to be filled and start the timer to reset the effect after 500 milliseconds
                 tb_checksum.BackColor = Color.Red;
                 timer1.Interval = 500;
                 timer1.Start();
@@ -85,11 +101,23 @@ namespace Checksum_Validator
             return valid;
         }
 
+        /// <summary>
+        /// Compares both, the generated hash and the provided one to check if they're equal or not
+        /// </summary>
+        /// <param name="generatedHash"> The generated hash </param>
+        /// <param name="providedHash"> The provided hash </param>
+        /// <returns> true, if both hashes are equal and true if not. </returns>
         private bool CompareHashes(string generatedHash, string providedHash)
         {
             return providedHash.ToLower().Equals(generatedHash);
         }
 
+        /// <summary>
+        /// Generates the checksum of the selected algorithm
+        /// </summary>
+        /// <param name="filePath"> The filepath of the selected file </param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         private string GenerateChecksum(string filePath, string type)
         {
             var fileHash = "";
@@ -104,6 +132,8 @@ namespace Checksum_Validator
                             using (var stream = File.OpenRead(filePath))
                             {
                                 var hash = sha256.ComputeHash(stream);
+
+                                // "hash" is an array of bytes. When combining, a "-" gets inserted after every byte. Thats why we have to remove all "-" in order to compare
                                 fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                             }
                         }
@@ -115,6 +145,8 @@ namespace Checksum_Validator
                             using (var stream = File.OpenRead(filePath))
                             {
                                 var hash = sha1.ComputeHash(stream);
+
+                                // "hash" is an array of bytes. When combining, a "-" gets inserted after every byte. Thats why we have to remove all "-" in order to compare
                                 fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                             }
                         }
@@ -126,6 +158,8 @@ namespace Checksum_Validator
                             using (var stream = File.OpenRead(filePath))
                             {
                                 var hash = sha512.ComputeHash(stream);
+
+                                // "hash" is an array of bytes. When combining, a "-" gets inserted after every byte. Thats why we have to remove all "-" in order to compare
                                 fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                             }
                         }
@@ -137,6 +171,8 @@ namespace Checksum_Validator
                             using (var stream = File.OpenRead(filePath))
                             {
                                 var hash = md5.ComputeHash(stream);
+
+                                // "hash" is an array of bytes. When combining, a "-" gets inserted after every byte. Thats why we have to remove all "-" in order to compare
                                 fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
                             }
                         }
@@ -152,9 +188,16 @@ namespace Checksum_Validator
             return fileHash;
         }
 
+        /// <summary>
+        /// An event that gets triggered after an tick of the timer
+        /// </summary>
+        /// <param name="sender"> The sender </param>
+        /// <param name="e"> Event args </param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
+
+            // After the timer stops, both forms' background are resetted to their default background color
             tb_filePath.BackColor = DefaultBackColor;
             tb_checksum.BackColor = DefaultBackColor;
         }
