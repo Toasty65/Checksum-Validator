@@ -1,7 +1,7 @@
 ﻿
 namespace Checksum_Validator
 {
-    partial class Form1
+    partial class ChecksumValidatorMain
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace Checksum_Validator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChecksumValidatorMain));
             this.header1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -40,15 +40,16 @@ namespace Checksum_Validator
             this.tb_checksum = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.rb_md5 = new System.Windows.Forms.RadioButton();
+            this.rb_sha512 = new System.Windows.Forms.RadioButton();
+            this.rb_sha256 = new System.Windows.Forms.RadioButton();
+            this.rb_sha1 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_selectFile = new System.Windows.Forms.Button();
             this.tb_filePath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.rb_sha1 = new System.Windows.Forms.RadioButton();
-            this.rb_sha256 = new System.Windows.Forms.RadioButton();
-            this.rb_sha512 = new System.Windows.Forms.RadioButton();
-            this.rb_md5 = new System.Windows.Forms.RadioButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -62,9 +63,8 @@ namespace Checksum_Validator
             this.header1.Dock = System.Windows.Forms.DockStyle.Top;
             this.header1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.header1.Location = new System.Drawing.Point(0, 0);
-            this.header1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.header1.Name = "header1";
-            this.header1.Size = new System.Drawing.Size(528, 52);
+            this.header1.Size = new System.Drawing.Size(398, 42);
             this.header1.TabIndex = 0;
             this.header1.Text = "Validate Checksum";
             this.header1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -76,10 +76,9 @@ namespace Checksum_Validator
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Location = new System.Drawing.Point(0, 81);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(0, 66);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(531, 449);
+            this.panel1.Size = new System.Drawing.Size(398, 365);
             this.panel1.TabIndex = 1;
             // 
             // groupBox4
@@ -87,11 +86,9 @@ namespace Checksum_Validator
             this.groupBox4.Controls.Add(this.btn_confirm);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(0, 279);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Location = new System.Drawing.Point(0, 227);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox4.Size = new System.Drawing.Size(531, 85);
+            this.groupBox4.Size = new System.Drawing.Size(398, 69);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Step 4: Compare";
@@ -101,10 +98,9 @@ namespace Checksum_Validator
             this.btn_confirm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_confirm.Location = new System.Drawing.Point(96, 31);
-            this.btn_confirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_confirm.Location = new System.Drawing.Point(72, 25);
             this.btn_confirm.Name = "btn_confirm";
-            this.btn_confirm.Size = new System.Drawing.Size(320, 36);
+            this.btn_confirm.Size = new System.Drawing.Size(240, 29);
             this.btn_confirm.TabIndex = 0;
             this.btn_confirm.Text = "Check!";
             this.btn_confirm.UseVisualStyleBackColor = true;
@@ -112,11 +108,10 @@ namespace Checksum_Validator
             // 
             // rtb_output
             // 
-            this.rtb_output.Location = new System.Drawing.Point(16, 372);
-            this.rtb_output.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtb_output.Location = new System.Drawing.Point(12, 302);
             this.rtb_output.Name = "rtb_output";
             this.rtb_output.ReadOnly = true;
-            this.rtb_output.Size = new System.Drawing.Size(497, 62);
+            this.rtb_output.Size = new System.Drawing.Size(374, 51);
             this.rtb_output.TabIndex = 6;
             this.rtb_output.Text = "";
             // 
@@ -125,21 +120,18 @@ namespace Checksum_Validator
             this.groupBox3.Controls.Add(this.tb_checksum);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(0, 192);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Location = new System.Drawing.Point(0, 156);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(531, 87);
+            this.groupBox3.Size = new System.Drawing.Size(398, 71);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Step 3: Enter provided checksum";
             // 
             // tb_checksum
             // 
-            this.tb_checksum.Location = new System.Drawing.Point(16, 32);
-            this.tb_checksum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_checksum.Location = new System.Drawing.Point(12, 26);
             this.tb_checksum.Name = "tb_checksum";
-            this.tb_checksum.Size = new System.Drawing.Size(497, 27);
+            this.tb_checksum.Size = new System.Drawing.Size(374, 23);
             this.tb_checksum.TabIndex = 0;
             // 
             // groupBox2
@@ -147,11 +139,9 @@ namespace Checksum_Validator
             this.groupBox2.Controls.Add(this.tableLayoutPanel1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(0, 87);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(0, 71);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(531, 105);
+            this.groupBox2.Size = new System.Drawing.Size(398, 85);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Step 2: Choose algorithm";
@@ -166,14 +156,75 @@ namespace Checksum_Validator
             this.tableLayoutPanel1.Controls.Add(this.rb_sha256, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.rb_sha1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 24);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(523, 77);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(392, 63);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // rb_md5
+            // 
+            this.rb_md5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_md5.Location = new System.Drawing.Point(198, 33);
+            this.rb_md5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_md5.Name = "rb_md5";
+            this.rb_md5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rb_md5.Size = new System.Drawing.Size(192, 28);
+            this.rb_md5.TabIndex = 3;
+            this.rb_md5.Text = "MD 5";
+            this.rb_md5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rb_md5.UseVisualStyleBackColor = true;
+            // 
+            // rb_sha512
+            // 
+            this.rb_sha512.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_sha512.Location = new System.Drawing.Point(2, 33);
+            this.rb_sha512.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_sha512.Name = "rb_sha512";
+            this.rb_sha512.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rb_sha512.Size = new System.Drawing.Size(192, 28);
+            this.rb_sha512.TabIndex = 2;
+            this.rb_sha512.Text = "SHA 512";
+            this.rb_sha512.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rb_sha512.UseVisualStyleBackColor = true;
+            // 
+            // rb_sha256
+            // 
+            this.rb_sha256.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_sha256.Checked = true;
+            this.rb_sha256.Location = new System.Drawing.Point(198, 2);
+            this.rb_sha256.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_sha256.Name = "rb_sha256";
+            this.rb_sha256.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rb_sha256.Size = new System.Drawing.Size(192, 27);
+            this.rb_sha256.TabIndex = 1;
+            this.rb_sha256.TabStop = true;
+            this.rb_sha256.Text = "SHA 256";
+            this.rb_sha256.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rb_sha256.UseVisualStyleBackColor = true;
+            // 
+            // rb_sha1
+            // 
+            this.rb_sha1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_sha1.Location = new System.Drawing.Point(2, 2);
+            this.rb_sha1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_sha1.Name = "rb_sha1";
+            this.rb_sha1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rb_sha1.Size = new System.Drawing.Size(192, 27);
+            this.rb_sha1.TabIndex = 0;
+            this.rb_sha1.Text = "SHA 1";
+            this.rb_sha1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rb_sha1.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -182,10 +233,8 @@ namespace Checksum_Validator
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(531, 87);
+            this.groupBox1.Size = new System.Drawing.Size(398, 71);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Step 1: Select file";
@@ -193,10 +242,9 @@ namespace Checksum_Validator
             // btn_selectFile
             // 
             this.btn_selectFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_selectFile.Location = new System.Drawing.Point(404, 38);
-            this.btn_selectFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_selectFile.Location = new System.Drawing.Point(303, 31);
             this.btn_selectFile.Name = "btn_selectFile";
-            this.btn_selectFile.Size = new System.Drawing.Size(111, 26);
+            this.btn_selectFile.Size = new System.Drawing.Size(83, 21);
             this.btn_selectFile.TabIndex = 2;
             this.btn_selectFile.Text = "Select";
             this.btn_selectFile.UseVisualStyleBackColor = true;
@@ -205,84 +253,22 @@ namespace Checksum_Validator
             // tb_filePath
             // 
             this.tb_filePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_filePath.Location = new System.Drawing.Point(16, 38);
-            this.tb_filePath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_filePath.Location = new System.Drawing.Point(12, 31);
             this.tb_filePath.Name = "tb_filePath";
             this.tb_filePath.ReadOnly = true;
-            this.tb_filePath.Size = new System.Drawing.Size(379, 24);
+            this.tb_filePath.Size = new System.Drawing.Size(285, 21);
             this.tb_filePath.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 52);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(0, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(528, 26);
+            this.label2.Size = new System.Drawing.Size(398, 21);
             this.label2.TabIndex = 2;
             this.label2.Text = "by Toasty";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // rb_sha1
-            // 
-            this.rb_sha1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_sha1.Location = new System.Drawing.Point(3, 3);
-            this.rb_sha1.Name = "rb_sha1";
-            this.rb_sha1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rb_sha1.Size = new System.Drawing.Size(255, 32);
-            this.rb_sha1.TabIndex = 0;
-            this.rb_sha1.TabStop = true;
-            this.rb_sha1.Text = "SHA 1";
-            this.rb_sha1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rb_sha1.UseVisualStyleBackColor = true;
-            // 
-            // rb_sha256
-            // 
-            this.rb_sha256.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_sha256.Location = new System.Drawing.Point(264, 3);
-            this.rb_sha256.Name = "rb_sha256";
-            this.rb_sha256.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rb_sha256.Size = new System.Drawing.Size(256, 32);
-            this.rb_sha256.TabIndex = 1;
-            this.rb_sha256.TabStop = true;
-            this.rb_sha256.Text = "SHA 256";
-            this.rb_sha256.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rb_sha256.UseVisualStyleBackColor = true;
-            // 
-            // rb_sha512
-            // 
-            this.rb_sha512.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_sha512.Location = new System.Drawing.Point(3, 41);
-            this.rb_sha512.Name = "rb_sha512";
-            this.rb_sha512.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rb_sha512.Size = new System.Drawing.Size(255, 33);
-            this.rb_sha512.TabIndex = 2;
-            this.rb_sha512.TabStop = true;
-            this.rb_sha512.Text = "SHA 512";
-            this.rb_sha512.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rb_sha512.UseVisualStyleBackColor = true;
-            // 
-            // rb_md5
-            // 
-            this.rb_md5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_md5.Location = new System.Drawing.Point(264, 41);
-            this.rb_md5.Name = "rb_md5";
-            this.rb_md5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rb_md5.Size = new System.Drawing.Size(256, 33);
-            this.rb_md5.TabIndex = 3;
-            this.rb_md5.TabStop = true;
-            this.rb_md5.Text = "MD 5";
-            this.rb_md5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rb_md5.UseVisualStyleBackColor = true;
             // 
             // timer1
             // 
@@ -290,17 +276,16 @@ namespace Checksum_Validator
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 521);
+            this.ClientSize = new System.Drawing.Size(398, 430);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.header1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(546, 568);
-            this.MinimumSize = new System.Drawing.Size(546, 568);
+            this.MaximumSize = new System.Drawing.Size(414, 469);
+            this.MinimumSize = new System.Drawing.Size(414, 469);
             this.Name = "Form1";
             this.Text = "Checksum Validator";
             this.panel1.ResumeLayout(false);
@@ -335,6 +320,7 @@ namespace Checksum_Validator
         private System.Windows.Forms.RadioButton rb_sha512;
         private System.Windows.Forms.RadioButton rb_sha256;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
