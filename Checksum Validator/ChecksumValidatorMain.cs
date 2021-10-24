@@ -62,6 +62,7 @@ namespace Checksum_Validator
             {
                 if (algorithmType.Checked) type = algorithmType.Text.Replace(" ", "").ToLower();
             }
+            Log.Information($"The selected algorithm for {filePath} is {type}.");
 
             // Set the result text for the output box
             rtb_output.Text = CompareHashes(GenerateChecksum(filePath, type), originalChecksum) == true ? "Checksum's are equal!" :
@@ -77,25 +78,34 @@ namespace Checksum_Validator
             var valid = true;
             rtb_output.Text = "";
 
-            if (string.IsNullOrEmpty(tb_filePath.Text))
+            try
             {
-                valid = false;
-                rtb_output.Text += "Please select a file!\n";
+                if (string.IsNullOrEmpty(tb_filePath.Text))
+                {
+                    valid = false;
+                    rtb_output.Text += "Please select a file!\n";
 
-                // Highlight the form to be filled and start the timer to reset the effect after 500 milliseconds
-                tb_filePath.BackColor = Color.Red;
-                timer1.Interval = 500;
-                timer1.Start();
+                    // Highlight the form to be filled and start the timer to reset the effect after 500 milliseconds
+                    tb_filePath.BackColor = Color.Red;
+                    timer1.Interval = 500;
+                    timer1.Start();
+                }
+                if (string.IsNullOrEmpty(tb_checksum.Text))
+                {
+                    valid = false;
+                    rtb_output.Text += "Please enter the provided checksum!";
+
+                    // Highlight the form to be filled and start the timer to reset the effect after 500 milliseconds
+                    tb_checksum.BackColor = Color.Red;
+                    timer1.Interval = 500;
+                    timer1.Start();
+                }
             }
-            if (string.IsNullOrEmpty(tb_checksum.Text))
+            catch (Exception ex)
             {
-                valid = false;
-                rtb_output.Text += "Please enter the provided checksum!";
-
-                // Highlight the form to be filled and start the timer to reset the effect after 500 milliseconds
-                tb_checksum.BackColor = Color.Red;
-                timer1.Interval = 500;
-                timer1.Start();
+                rtb_output.Text = "Couldn't check if all forms are filled. Please check the logs!";
+                Log.Error($"Couldn't check if all forms are filled: {ex}.");
+                return false;
             }
 
             return valid;
@@ -135,6 +145,7 @@ namespace Checksum_Validator
 
                                 // "hash" is an array of bytes. When combining, a "-" gets inserted after every byte. Thats why we have to remove all "-" in order to compare
                                 fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                                Log.Information($"Successfully generated the SHA256 hash of {filePath}.");
                             }
                         }
                         break;
@@ -148,6 +159,7 @@ namespace Checksum_Validator
 
                                 // "hash" is an array of bytes. When combining, a "-" gets inserted after every byte. Thats why we have to remove all "-" in order to compare
                                 fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                                Log.Information($"Successfully generated the SHA1 hash of {filePath}.");
                             }
                         }
                         break;
@@ -161,6 +173,7 @@ namespace Checksum_Validator
 
                                 // "hash" is an array of bytes. When combining, a "-" gets inserted after every byte. Thats why we have to remove all "-" in order to compare
                                 fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                                Log.Information($"Successfully generated the SHA512 hash of {filePath}.");
                             }
                         }
                         break;
@@ -174,6 +187,7 @@ namespace Checksum_Validator
 
                                 // "hash" is an array of bytes. When combining, a "-" gets inserted after every byte. Thats why we have to remove all "-" in order to compare
                                 fileHash = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                                Log.Information($"Successfully generated the MD5 hash of {filePath}.");
                             }
                         }
                         break;
@@ -183,6 +197,7 @@ namespace Checksum_Validator
             }
             catch (Exception ex)
             {
+                rtb_output.Text = $"Could not generate the hash for {filePath}. Please check the logs!";
                 Log.Error($"Could not generate the hash for {filePath}: {ex}");
             }
             return fileHash;
@@ -195,11 +210,18 @@ namespace Checksum_Validator
         /// <param name="e"> Event args </param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            timer1.Stop();
+            try
+            {
+                timer1.Stop();
 
-            // After the timer stops, both forms' background are resetted to their default background color
-            tb_filePath.BackColor = DefaultBackColor;
-            tb_checksum.BackColor = DefaultBackColor;
+                // After the timer stops, both forms' background are resetted to their default background color
+                tb_filePath.BackColor = DefaultBackColor;
+                tb_checksum.BackColor = DefaultBackColor;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Couldn't handle the timer: {ex}.");
+            }
         }
     }
 }
